@@ -56,10 +56,18 @@ class mqConsumer(mqConsumerInterface):
         self.m_channel.basic_consume(
             self.m_queue_name, self.on_message_callback, auto_ack=False
         )
-        
 
-    def onMessageCallback(self) -> None:
-        pass
+    def onMessageCallback(self, channel, method_frame, header_frame, body) -> None:
+        # Manually acknowledge message
+        # method_frame: contains metadata about the message delivery (e.g. delivery tag)
+        # header_frame: contains metadata about message headers (e.g. content type)
+        # The second parameter (False) is for multiple
+            # False - only the specific message with this delivery_tag is acknowledged
+            # True - all messages up to/including the delivery_tag are acknowledged
+        channel.basic_ack(method_frame.delivery_tag, False)
+
+        # Print message
+        print(f" [x] Received Message: {body}")
 
     def startConsuming(self) -> None:
         pass
