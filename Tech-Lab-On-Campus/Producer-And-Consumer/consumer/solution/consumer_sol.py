@@ -2,6 +2,9 @@ import os
 import pika
 from consumer_interface import mqConsumerInterface
 
+# RUN TEST
+# AMPQ_URL="amqp://guest:guest@rabbitmq:5672/" python3 consume.py
+
 # mqConsumer inherits from mqConsumerInterface
 class mqConsumer(mqConsumerInterface):
     # Constructor - called when the class is first created
@@ -19,9 +22,8 @@ class mqConsumer(mqConsumerInterface):
     def setupRMQConnection(self) -> None:
         # pika is a python client for RabbitMQ.
 
-        # Get the RabbitMQ connection URL from the environment var "AMPQ_URL"
         # Parse the url to extract the params necessary to connect to RabbitMQ
-        connection_params = pika.URLParameters(os.environ["AMPQ_URL"])
+        connection_params = pika.URLParameters(os.environ["AMQP_URL"]) 
 
         # Connect to RabbitMQ with the extracted params
         # "Blocking" means that operations on this connection will block/wait until they are completed
