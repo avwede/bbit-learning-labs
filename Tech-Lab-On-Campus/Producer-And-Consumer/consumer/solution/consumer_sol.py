@@ -57,7 +57,7 @@ class mqConsumer(mqConsumerInterface):
             self.m_queue_name, self.on_message_callback, auto_ack=False
         )
 
-    def onMessageCallback(self, channel, method_frame, header_frame, body) -> None:
+    def on_message_callback(self, channel, method_frame, header_frame, body) -> None:
         # Manually acknowledge message
         # method_frame: contains metadata about the message delivery (e.g. delivery tag)
         # header_frame: contains metadata about message headers (e.g. content type)
@@ -70,4 +70,14 @@ class mqConsumer(mqConsumerInterface):
         print(f" [x] Received Message: {body}")
 
     def startConsuming(self) -> None:
-        pass
+        # Print log
+        print(" [*] Waiting for messages. To exit press CTRL+C")
+
+        # Start consuming messages
+        # https://pika.readthedocs.io/en/stable/modules/adapters/blocking.html?highlight=start_consuming#pika.adapters.blocking_connection.BlockingChannel.start_consuming
+        self.m_channel.start_consuming()
+
+    def __del__(self) -> None:
+        print(f"Closing RMQ connection on destruction")
+        self.m_channel.close()
+        self.m_connection.close()
