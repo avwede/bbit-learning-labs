@@ -2,7 +2,7 @@ import os
 import pika
 from consumer_interface import mqConsumerInterface
 
-# RUN TEST
+# HOW TO RUN TEST
 # AMPQ_URL="amqp://guest:guest@rabbitmq:5672/" python3 consume.py
 
 # mqConsumer inherits from mqConsumerInterface
