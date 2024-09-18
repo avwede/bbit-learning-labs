@@ -49,7 +49,7 @@ class mqProducer(mqProducerInterface):
         # "Exchange" is a routing mechanism that receives messages from producers + determines which queues they should be delivered to
         # Exchanges don't store messages - they route messages based on certain rules or bindings
         # https://pika.readthedocs.io/en/stable/modules/adapters/blocking.html?highlight=exchange_declare#pika.adapters.blocking_connection.BlockingChannel.exchange_declare
-        self.m_channel.exchange_declare(self.m_exchange_name)
+        self.m_channel.exchange_declare(self.m_exchange_name, exchange_type="topic")
     
     def publishOrder(self, message: str) -> None:
         # Publish the message to the exchange
