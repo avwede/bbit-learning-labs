@@ -5,7 +5,12 @@ from producer_interface import mqProducerInterface
 # HOW TO RUN TEST
 
 # 1) Enter bash shell
+
+# If you haven't started the container
 # docker-compose up -d && docker-compose exec rmq_lab /bin/bash
+
+# If you have started the container (where the string is from your other bash shell e.g. jovyan@a492aec1d9b)
+# docker exec -it a492aec1d9bb /bin/bash 
 
 # 2) Run python script
 # cd Producer-And-Consumer/producer/
