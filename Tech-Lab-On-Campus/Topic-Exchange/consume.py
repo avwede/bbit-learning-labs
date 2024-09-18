@@ -23,8 +23,24 @@ def main(sector: str, queueName: str) -> None:
     
     # Implement Logic to Create Binding Key from the ticker and sector variable -  Step 2
    
-    
+    # When binding the Queue to the exchange ensure that routing key utilizies one of the special cases
+    # for binding keys such as * (star) or # (hash). For instance. "#.Google.#" as a binding key for a 
+    # Queue will ensure that all messages with a key containing the word Google such as Stock.Google.tech 
+    # will have their messages routed to that Queue.
+
+    # star (*) will match exactly one word
+    # hash (#) will match zero of more words
+    # The f-string format (f"") allows for embedding the value of sector directly into the string
+    # bindingKey example matches could be "test.test.Tech" if the sector is "Tech"
+    bindingKey = f"*.*.{sector}"
+
+    # Remove whitespace
+    bindingKey.strip()
+
+    # Create an intance of the mqConsumer class
     consumer = mqConsumer(binding_key=bindingKey,exchange_name="Tech Lab Topic Exchange",queue_name=queueName)    
+    
+    # Start it up!
     consumer.startConsuming()
 
 if __name__ == "__main__":
