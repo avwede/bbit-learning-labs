@@ -3,6 +3,12 @@ import pika
 from consumer_interface import mqConsumerInterface
 
 # HOW TO RUN TEST
+
+# 1) Enter bash shell
+# docker-compose up -d && docker-compose exec rmq_lab /bin/bash
+
+# 2) Run python script
+# cd Producer-And-Consumer/consumer/
 # AMPQ_URL="amqp://guest:guest@rabbitmq:5672/" python3 consume.py
 
 # mqConsumer inherits from mqConsumerInterface
