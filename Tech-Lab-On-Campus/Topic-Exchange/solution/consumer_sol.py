@@ -31,7 +31,6 @@ from consumer_interface import mqConsumerInterface
             # AMPQ_URL="amqp://guest:guest@rabbitmq:5672/" python3 publish.py -t XOM -p 114 -s energy
                 # Should have no output since we did not set up a consumer for the energy sector. 
 
-
 # mqConsumer inherits from mqConsumerInterface
 class mqConsumer(mqConsumerInterface):
     # Constructor - called when the class is first created

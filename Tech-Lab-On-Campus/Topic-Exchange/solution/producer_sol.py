@@ -67,9 +67,9 @@ class mqProducer(mqProducerInterface):
         # Publish the message to the exchange
         # https://pika.readthedocs.io/en/stable/modules/channel.html?highlight=basic_publish#pika.channel.Channel.basic_publish
         self.m_channel.basic_publish(
-            exchange=self.m_exchange_name,
-            routing_key=self.m_routing_key,
-            body=message,
+            exchange = self.m_exchange_name,
+            routing_key = self.m_routing_key,
+            body = message,
         )
 
         print(" [x] Sent Orders")

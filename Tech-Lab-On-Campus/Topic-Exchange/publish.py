@@ -19,9 +19,6 @@ from solution.producer_sol import mqProducer  # pylint: disable=import-error
 
 # Producer Service File
 
-
-# Consumer Service File
-
 # HOW TO RUN TEST
 
 # 1) Enter bash shell
